@@ -42,7 +42,6 @@ public class Main extends JFrame implements ActionListener{
     public void initComponents(){
         setTitle("Pac-Man");
         setResizable(false);
-//        setUndecorated(true);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setSize(464,615);
         setLocationRelativeTo(null);
