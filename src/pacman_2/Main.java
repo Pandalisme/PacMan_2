@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author Agape Arimatea
+ * @author Agape Arimatea, jqwlkdjasldjlakjdlksjdaljdlkj
  */
 public class Main extends JFrame implements ActionListener{
     
