@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @Author - Pac-Man
+ * @author Agape Arimatea - Michael Nathaniel
  */
 public class Main extends JFrame implements ActionListener, KeyListener {
 
@@ -57,6 +57,22 @@ public class Main extends JFrame implements ActionListener, KeyListener {
             ex.printStackTrace(System.err);
         }
         getContentPane().setLayout(null);
+        
+        pnlMenu = new JPanel();
+        pnlMenu.setBounds(0, 0, 464, 615);
+        pnlMenu.setBackground(Color.black);
+        pnlMenu.setLayout(null);
+        pnlMenu.addKeyListener(this);
+        pnlMenu.setFocusable(true);
+        add(pnlMenu);
+
+        lblMenu = new JLabel("Press any key to start");
+        lblMenu.setForeground(Color.white);
+        lblMenu.setFont(new Font("Emulogic", Font.PLAIN, 18));
+        lblMenu.setBounds(30, 10, 400, 615);
+        lblMenu.setVisible(true);
+        pnlMenu.add(lblMenu);
+        
         pnlMap = new JPanel();
         pnlMap.setOpaque(false);
         pnlMap.setLayout(null);
@@ -92,20 +108,7 @@ public class Main extends JFrame implements ActionListener, KeyListener {
         lblPacmanIcon.setBounds(50, 59, 25, 30);
         pnlMap.add(lblPacmanIcon);
 
-        pnlMenu = new JPanel();
-        pnlMenu.setBounds(0, 0, 464, 615);
-        pnlMenu.setBackground(Color.black);
-        pnlMenu.setLayout(null);
-        pnlMenu.addKeyListener(this);
-        pnlMenu.setFocusable(true);
-        add(pnlMenu);
-
-        lblMenu = new JLabel("Press any key to start");
-        lblMenu.setForeground(Color.white);
-        lblMenu.setFont(new Font("Emulogic", Font.PLAIN, 18));
-        lblMenu.setBounds(30, 10, 400, 615);
-        lblMenu.setVisible(true);
-        pnlMenu.add(lblMenu);
+        
     }
 
     public static void main(String[] args) {
