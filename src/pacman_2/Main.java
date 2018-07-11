@@ -96,6 +96,7 @@ public class Main extends JFrame implements KeyListener {
                         y -= 1;
                         if(y > 55){
                             lblPacmanIcon.arah = 0;
+                            lblPacmanIcon.prev_arah = lblPacmanIcon.arah;
                         } else {
                             lblPacmanIcon.arah = lblPacmanIcon.prev_arah;
                         }
@@ -106,6 +107,7 @@ public class Main extends JFrame implements KeyListener {
                         y += 1;
                         if(y < 505){
                              lblPacmanIcon.arah = 1;
+                             lblPacmanIcon.prev_arah = lblPacmanIcon.arah;
                         } else {
                             lblPacmanIcon.arah = lblPacmanIcon.prev_arah;
                         }
@@ -117,6 +119,7 @@ public class Main extends JFrame implements KeyListener {
                         x -= 1;
                         if(x > 11){
                             lblPacmanIcon.arah = 2;
+                            lblPacmanIcon.prev_arah = lblPacmanIcon.arah;
                         } else {
                             lblPacmanIcon.arah = lblPacmanIcon.prev_arah;
                         }
@@ -125,8 +128,9 @@ public class Main extends JFrame implements KeyListener {
                     }
                     case KeyEvent.VK_RIGHT: {
                         x += 1;
-                        if(x > 412){
+                        if(x < 412){
                             lblPacmanIcon.arah = 3;
+                            lblPacmanIcon.prev_arah = lblPacmanIcon.arah;
                         } else {
                             lblPacmanIcon.arah = lblPacmanIcon.prev_arah;
                         }

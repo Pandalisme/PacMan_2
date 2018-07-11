@@ -21,7 +21,7 @@ public class Player extends Character implements Runnable{
     int prev_arah;
 
     public Player() {
-        prev_arah = this.arah;
+//        prev_arah = this.arah;
         this.arah = arah;
     }
 
