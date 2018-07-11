@@ -52,7 +52,7 @@ public class Main extends JFrame implements ActionListener, KeyListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.black);
         try {
-            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("D:\\Home\\Michael\\TUGAS2\\IF\\TUBES_OOP\\PacMan_2\\Pac-man - Copy.png")))));
+            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\Pac-man - Copy.png")))));
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
@@ -88,7 +88,7 @@ public class Main extends JFrame implements ActionListener, KeyListener {
         pnlMap.add(lblAlias);
 
         lblPacmanIcon = new JLabel();
-        lblPacmanIcon.setIcon(new ImageIcon(resizeImage("D:\\Home\\Michael\\TUGAS2\\IF\\TUBES_OOP\\PacMan_2\\pac_man_chara.png", 25, 25)));
+        lblPacmanIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\Pac-man - Copy.png", 25, 25)));
         lblPacmanIcon.setBounds(50, 59, 25, 30);
         pnlMap.add(lblPacmanIcon);
 
