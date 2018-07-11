@@ -90,6 +90,7 @@ public class Main extends JFrame implements KeyListener {
             public void keyPressed(KeyEvent e) {
                 int x = lblPacmanIcon.getX();
                 int y = lblPacmanIcon.getY();
+
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP: {
                         y -= 1;
@@ -118,9 +119,6 @@ public class Main extends JFrame implements KeyListener {
                     default:
                         break;
                 }
-                lblPacmanIcon.setLocation(x, y);
-            }
-        });
         add(pnlMap);
 
         lblLife = new JLabel("Life : ");
