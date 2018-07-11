@@ -90,19 +90,19 @@ public class Main extends JFrame implements KeyListener {
             public void keyPressed(KeyEvent e) {
                 int x = lblPacmanIcon.getX();
                 int y = lblPacmanIcon.getY();
-                if (e.getKeyCode() == KeyEvent.VK_UP && y > 53) {
+                if (e.getKeyCode() == KeyEvent.VK_UP) {
                     y -= 1;
                     lblPacmanIcon.arah = 0;
                     repaint();
-                } else if (e.getKeyCode() == KeyEvent.VK_DOWN && y < 504) {
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                     y += 1;
                     lblPacmanIcon.arah = 1;
                     repaint();
-                } else if (e.getKeyCode() == KeyEvent.VK_LEFT && x > 10) {
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                     x -= 1;
                     lblPacmanIcon.arah = 2;
                     repaint();
-                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT && x < 411) {
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                     x += 1;
                     lblPacmanIcon.arah = 3;
                     repaint();
