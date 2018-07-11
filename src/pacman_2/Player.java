@@ -94,6 +94,17 @@ public class Player extends Character implements Runnable{
             } else {
                 x += 1;
             }
+            
+            if(x < 11){
+                x++;
+            } else if(x > 412){
+                x--;
+            } else if(y < 55){
+                y++;
+            } else if(y > 505){
+                y--;
+            }
+            
             this.setLocation(x, y);
             repaint();
 
