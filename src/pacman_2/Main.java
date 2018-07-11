@@ -1,8 +1,9 @@
 package pacman_2;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
+//import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -14,7 +15,7 @@ import javax.imageio.ImageIO;
  *
  * @author Agape Arimatea - Michael Nathaniel
  */
-public class Main extends JFrame implements ActionListener, KeyListener {
+public class Main extends JFrame implements KeyListener {
 
     private JPanel pnlMap;
 
@@ -26,12 +27,13 @@ public class Main extends JFrame implements ActionListener, KeyListener {
     private JLabel lblScore;
     private JLabel lblAlias;
 
-    private JLabel lblPacmanIcon;
+//    private JLabel lblPacmanIcon;
     private JLabel lblBlinkyIcon;
     private JLabel lblPinkyIcon;
     private JLabel lblInkyIcon;
     private JLabel lblClydeIcon;
     
+    private Player lblPacmanIcon;
 
     public Main() {
         initComponents();
@@ -82,6 +84,42 @@ public class Main extends JFrame implements ActionListener, KeyListener {
         pnlMap.setOpaque(false);
         pnlMap.setLayout(null);
         pnlMap.setBounds(0, 0, 464, 615);
+        pnlMap.setFocusable(true);
+        pnlMap.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                int x = lblPacmanIcon.getX();
+                int y = lblPacmanIcon.getY();
+                switch (e.getKeyCode()) {
+                    case KeyEvent.VK_UP: {
+                        y -= 1;
+                        lblPacmanIcon.arah = 0;
+                        repaint();
+                        break;
+                    }
+                    case KeyEvent.VK_DOWN: {
+                        y += 1;
+                        lblPacmanIcon.arah = 1;
+                        repaint();
+                        break;
+                    }
+                    case KeyEvent.VK_LEFT: {
+                        x -= 1;
+                        lblPacmanIcon.arah = 2;
+                        repaint();
+                        break;
+                    } case KeyEvent.VK_RIGHT: {
+                        x += 1;
+                        lblPacmanIcon.arah = 3;
+                        repaint();
+                        break;
+                    } 
+                    default:
+                        break;
+                }
+                lblPacmanIcon.setLocation(x, y);
+            }
+        });
         add(pnlMap);
 
         lblLife = new JLabel("Life : ");
@@ -108,10 +146,12 @@ public class Main extends JFrame implements ActionListener, KeyListener {
         lblAlias.setBounds(353, 10, 120, 35);
         pnlMap.add(lblAlias);
 
-        lblPacmanIcon = new JLabel();
+        lblPacmanIcon = new Player();
         lblPacmanIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\pac_man_chara.png", 25, 25)));
         lblPacmanIcon.setBounds(50, 59, 25, 30);
         pnlMap.add(lblPacmanIcon);
+
+        
         
         lblBlinkyIcon = new JLabel();
         lblBlinkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\blinky.png", 25, 25)));
@@ -134,15 +174,15 @@ public class Main extends JFrame implements ActionListener, KeyListener {
         pnlMap.add(lblClydeIcon);
 
         
+        
+        Thread pacmanThread = new Thread(lblPacmanIcon);
+        pacmanThread.start();
+        
+//        System.out.println(lblPacmanIcon.getX());
     }
 
     public static void main(String[] args) {
         new Main().setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -151,13 +191,13 @@ public class Main extends JFrame implements ActionListener, KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        pnlMenu.hide();
+    public void keyReleased(KeyEvent e) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void keyPressed(KeyEvent e) {
+        pnlMenu.hide();
     }
 }
 

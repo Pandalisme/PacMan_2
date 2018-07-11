@@ -1,12 +1,12 @@
 package pacman_2;
 
-import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 /**
  *
  * @author Agape Arimatea
  */
-public abstract class Character extends JFrame{
+public abstract class Character extends JLabel{
 
     protected String name;
     protected int movementSpeed;
