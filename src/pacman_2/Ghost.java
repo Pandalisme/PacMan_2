@@ -5,10 +5,10 @@ public class Ghost extends Character {
 
 	private boolean ghostRunning=false;
 
-	public void dead() {
-		this.coordinateX = 0;
-		this.coordinateY = 0;
-	}
+//	public void dead() {
+//		this.coordinateX = 0;
+//		this.coordinateY = 0;
+//	}
 
 	//Make the ghost run when player eats powerUp.
 	public void setGhostRun() {

@@ -1,4 +1,5 @@
 package pacman_2;
+import javax.swing.*;
 
 /**
  *
@@ -40,29 +41,6 @@ public class Player extends Character {
         }
     }
     
-    
-    //Movements
-    @Override
-    public void up() {
-        coordinateY++;
-    }
-
-    @Override
-    public void down() {
-        coordinateY--;
-    }
-
-    @Override
-    public void left() {
-        coordinateX--;
-    }
-
-    @Override
-    public void right() {
-        coordinateX++;
-    }
-    
-    
     //Getter-Setter
     public int getPoints() {
         return points;
@@ -88,5 +66,4 @@ public class Player extends Character {
         this.powerUp = isPowerUp;
     }
 
-    
 }

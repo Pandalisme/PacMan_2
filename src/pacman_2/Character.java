@@ -1,10 +1,12 @@
 package pacman_2;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Agape Arimatea
  */
-public abstract class Character extends Master implements Movement {
+public abstract class Character extends JFrame{
 
     protected String name;
     protected int movementSpeed;
