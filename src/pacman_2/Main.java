@@ -176,7 +176,7 @@ public class Main extends JFrame implements KeyListener {
 //        System.out.println(lblPacmanIcon.getX());
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new Main().setVisible(true);
     }
 
