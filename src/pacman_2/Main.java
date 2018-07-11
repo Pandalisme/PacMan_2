@@ -52,8 +52,9 @@ public class Main extends JFrame implements KeyListener {
 
     public void initComponents() {
         setTitle("Pac-Man");
-        setResizable(false);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //        setResizable(false);
+        //        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
         setSize(464, 615);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -125,52 +126,52 @@ public class Main extends JFrame implements KeyListener {
         lblLife = new JLabel("Life : ");
         lblLife.setForeground(Color.white);
         lblLife.setFont(new Font("Emulogic", Font.PLAIN, 12));
-        lblLife.setBounds(8, 541, 90, 50);
+        lblLife.setBounds(13, 550, 90, 50);
         pnlMap.add(lblLife);
 
         lblTitleScore = new JLabel("Score");
         lblTitleScore.setForeground(Color.white);
         lblTitleScore.setFont(new Font("Emulogic", Font.PLAIN, 18));
-        lblTitleScore.setBounds(10, 10, 120, 35);
+        lblTitleScore.setBounds(15, 25, 120, 35);
         pnlMap.add(lblTitleScore);
 
         lblScore = new JLabel("123");
         lblScore.setForeground(Color.white);
         lblScore.setFont(new Font("Emulogic", Font.PLAIN, 18));
-        lblScore.setBounds(200, 10, 140, 35);
+        lblScore.setBounds(205, 25, 140, 35);
         pnlMap.add(lblScore);
 
         lblAlias = new JLabel("Pac");
         lblAlias.setForeground(Color.white);
         lblAlias.setFont(new Font("Emulogic", Font.PLAIN, 18));
-        lblAlias.setBounds(353, 10, 120, 35);
+        lblAlias.setBounds(358, 25, 120, 35);
         pnlMap.add(lblAlias);
 
         lblPacmanIcon = new Player();
         lblPacmanIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\pac_man_chara.png", 25, 25)));
-        lblPacmanIcon.setBounds(50, 59, 25, 30);
+        lblPacmanIcon.setBounds(50, 74, 25, 30);
         pnlMap.add(lblPacmanIcon);
 
         
         
         lblBlinkyIcon = new JLabel();
         lblBlinkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\blinky.png", 25, 25)));
-        lblBlinkyIcon.setBounds(185,280,25,30);
+        lblBlinkyIcon.setBounds(185,295,25,30);
         pnlMap.add(lblBlinkyIcon);
         
         lblPinkyIcon = new JLabel();
         lblPinkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\pinky.png", 25, 25)));
-        lblPinkyIcon.setBounds(205,260,25,30);
+        lblPinkyIcon.setBounds(208,272,25,30);
         pnlMap.add(lblPinkyIcon);
         
         lblInkyIcon = new JLabel();
         lblInkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\inky.png", 25, 25)));
-        lblInkyIcon.setBounds(230,280,25,30);
+        lblInkyIcon.setBounds(233,295,25,30);
         pnlMap.add(lblInkyIcon);
         
         lblClydeIcon = new JLabel();
         lblClydeIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\clyde.png", 25, 25)));
-        lblClydeIcon.setBounds(250,260,25,30);
+        lblClydeIcon.setBounds(255,272,25,30);
         pnlMap.add(lblClydeIcon);
 
         
