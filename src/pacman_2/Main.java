@@ -27,6 +27,11 @@ public class Main extends JFrame implements ActionListener, KeyListener {
     private JLabel lblAlias;
 
     private JLabel lblPacmanIcon;
+    private JLabel lblBlinkyIcon;
+    private JLabel lblPinkyIcon;
+    private JLabel lblInkyIcon;
+    private JLabel lblClydeIcon;
+    
 
     public Main() {
         initComponents();
@@ -58,20 +63,20 @@ public class Main extends JFrame implements ActionListener, KeyListener {
         }
         getContentPane().setLayout(null);
         
-        pnlMenu = new JPanel();
-        pnlMenu.setBounds(0, 0, 464, 615);
-        pnlMenu.setBackground(Color.black);
-        pnlMenu.setLayout(null);
-        pnlMenu.addKeyListener(this);
-        pnlMenu.setFocusable(true);
-        add(pnlMenu);
-
-        lblMenu = new JLabel("Press any key to start");
-        lblMenu.setForeground(Color.white);
-        lblMenu.setFont(new Font("Emulogic", Font.PLAIN, 18));
-        lblMenu.setBounds(30, 10, 400, 615);
-        lblMenu.setVisible(true);
-        pnlMenu.add(lblMenu);
+//        pnlMenu = new JPanel();
+//        pnlMenu.setBounds(0, 0, 464, 615);
+//        pnlMenu.setBackground(Color.black);
+//        pnlMenu.setLayout(null);
+//        pnlMenu.addKeyListener(this);
+//        pnlMenu.setFocusable(true);
+//        add(pnlMenu);
+//
+//        lblMenu = new JLabel("Press any key to start");
+//        lblMenu.setForeground(Color.white);
+//        lblMenu.setFont(new Font("Emulogic", Font.PLAIN, 18));
+//        lblMenu.setBounds(30, 10, 400, 615);
+//        lblMenu.setVisible(true);
+//        pnlMenu.add(lblMenu);
         
         pnlMap = new JPanel();
         pnlMap.setOpaque(false);
@@ -107,6 +112,26 @@ public class Main extends JFrame implements ActionListener, KeyListener {
         lblPacmanIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\pac_man_chara.png", 25, 25)));
         lblPacmanIcon.setBounds(50, 59, 25, 30);
         pnlMap.add(lblPacmanIcon);
+        
+        lblBlinkyIcon = new JLabel();
+        lblBlinkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\blinky.png", 25, 25)));
+        lblBlinkyIcon.setBounds(185,280,25,30);
+        pnlMap.add(lblBlinkyIcon);
+        
+        lblPinkyIcon = new JLabel();
+        lblPinkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\pinky.png", 25, 25)));
+        lblPinkyIcon.setBounds(205,260,25,30);
+        pnlMap.add(lblPinkyIcon);
+        
+        lblInkyIcon = new JLabel();
+        lblInkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\inky.png", 25, 25)));
+        lblInkyIcon.setBounds(230,280,25,30);
+        pnlMap.add(lblInkyIcon);
+        
+        lblClydeIcon = new JLabel();
+        lblClydeIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\clyde.png", 25, 25)));
+        lblClydeIcon.setBounds(250,260,25,30);
+        pnlMap.add(lblClydeIcon);
 
         
     }
