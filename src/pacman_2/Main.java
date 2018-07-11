@@ -119,6 +119,9 @@ public class Main extends JFrame implements KeyListener {
                     default:
                         break;
                 }
+                lblPacmanIcon.setLocation(x, y);
+            }
+        });
         add(pnlMap);
 
         lblLife = new JLabel("Life : ");
