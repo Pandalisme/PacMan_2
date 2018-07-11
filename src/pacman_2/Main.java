@@ -94,25 +94,42 @@ public class Main extends JFrame implements KeyListener {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP: {
                         y -= 1;
-                        lblPacmanIcon.arah = 0;
+                        if(y > 55){
+                            lblPacmanIcon.arah = 0;
+                        } else {
+                            lblPacmanIcon.arah = lblPacmanIcon.prev_arah;
+                        }
                         repaint();
                         break;
                     }
                     case KeyEvent.VK_DOWN: {
                         y += 1;
-                        lblPacmanIcon.arah = 1;
+                        if(y < 505){
+                             lblPacmanIcon.arah = 1;
+                        } else {
+                            lblPacmanIcon.arah = lblPacmanIcon.prev_arah;
+                        }
+                        
                         repaint();
                         break;
                     }
                     case KeyEvent.VK_LEFT: {
                         x -= 1;
-                        lblPacmanIcon.arah = 2;
+                        if(x > 11){
+                            lblPacmanIcon.arah = 2;
+                        } else {
+                            lblPacmanIcon.arah = lblPacmanIcon.prev_arah;
+                        }
                         repaint();
                         break;
                     }
                     case KeyEvent.VK_RIGHT: {
                         x += 1;
-                        lblPacmanIcon.arah = 3;
+                        if(x > 412){
+                            lblPacmanIcon.arah = 3;
+                        } else {
+                            lblPacmanIcon.arah = lblPacmanIcon.prev_arah;
+                        }
                         repaint();
                         break;
                     }

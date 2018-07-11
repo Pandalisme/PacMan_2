@@ -18,8 +18,10 @@ public class Player extends Character implements Runnable{
     private int life;
     private boolean powerUp;
     int arah = 3;
+    int prev_arah;
 
     public Player() {
+        prev_arah = this.arah;
         this.arah = arah;
     }
 
