@@ -65,20 +65,20 @@ public class Main extends JFrame implements KeyListener {
         }
         getContentPane().setLayout(null);
 
-        pnlMenu = new JPanel();
-        pnlMenu.setBounds(0, 0, 464, 615);
-        pnlMenu.setBackground(Color.black);
-        pnlMenu.setLayout(null);
-        pnlMenu.addKeyListener(this);
-        pnlMenu.setFocusable(true);
-        add(pnlMenu);
-
-        lblMenu = new JLabel("Press any key to start");
-        lblMenu.setForeground(Color.white);
-        lblMenu.setFont(new Font("Emulogic", Font.PLAIN, 18));
-        lblMenu.setBounds(30, 10, 400, 615);
-        lblMenu.setVisible(true);
-        pnlMenu.add(lblMenu);
+//        pnlMenu = new JPanel();
+//        pnlMenu.setBounds(0, 0, 464, 615);
+//        pnlMenu.setBackground(Color.black);
+//        pnlMenu.setLayout(null);
+//        pnlMenu.addKeyListener(this);
+//        pnlMenu.setFocusable(true);
+//        add(pnlMenu);
+//
+//        lblMenu = new JLabel("Press any key to start");
+//        lblMenu.setForeground(Color.white);
+//        lblMenu.setFont(new Font("Emulogic", Font.PLAIN, 18));
+//        lblMenu.setBounds(30, 10, 400, 615);
+//        lblMenu.setVisible(true);
+//        pnlMenu.add(lblMenu);
 
         pnlMap = new JPanel();
         pnlMap.setOpaque(false);
