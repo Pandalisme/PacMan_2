@@ -12,11 +12,7 @@ import javax.imageio.ImageIO;
 
 /**
  *
-<<<<<<< HEAD
- * @author Agape Arimatea, jqwlkdjasldjlakjdlksjdaljdlkj
-=======
- * @author Agape Arimatea - Michael Nathaniel
->>>>>>> Revisi_Michael
+ * @Author - Pac-Man
  */
 public class Main extends JFrame implements ActionListener, KeyListener {
 
@@ -92,7 +88,7 @@ public class Main extends JFrame implements ActionListener, KeyListener {
         pnlMap.add(lblAlias);
 
         lblPacmanIcon = new JLabel();
-        lblPacmanIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\Pac-man - Copy.png", 25, 25)));
+        lblPacmanIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\pac_man_chara.png", 25, 25)));
         lblPacmanIcon.setBounds(50, 59, 25, 30);
         pnlMap.add(lblPacmanIcon);
 
