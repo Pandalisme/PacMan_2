@@ -54,7 +54,7 @@ public class Main extends JFrame implements KeyListener {
         setTitle("Pac-Man");
         setResizable(false);
         setUndecorated(true);
-        setSize(448,576);
+        setSize(448, 576);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.black);
@@ -65,20 +65,20 @@ public class Main extends JFrame implements KeyListener {
         }
         getContentPane().setLayout(null);
 
-//        pnlMenu = new JPanel();
-//        pnlMenu.setBounds(0, 0, 464, 615);
-//        pnlMenu.setBackground(Color.black);
-//        pnlMenu.setLayout(null);
-//        pnlMenu.addKeyListener(this);
-//        pnlMenu.setFocusable(true);
-//        add(pnlMenu);
-//
-//        lblMenu = new JLabel("Press any key to start");
-//        lblMenu.setForeground(Color.white);
-//        lblMenu.setFont(new Font("Emulogic", Font.PLAIN, 18));
-//        lblMenu.setBounds(30, 10, 400, 615);
-//        lblMenu.setVisible(true);
-//        pnlMenu.add(lblMenu);
+        pnlMenu = new JPanel();
+        pnlMenu.setBounds(0, 0, 464, 615);
+        pnlMenu.setBackground(Color.black);
+        pnlMenu.setLayout(null);
+        pnlMenu.addKeyListener(this);
+        pnlMenu.setFocusable(true);
+        add(pnlMenu);
+
+        lblMenu = new JLabel("Press any key to start");
+        lblMenu.setForeground(Color.white);
+        lblMenu.setFont(new Font("Emulogic", Font.PLAIN, 18));
+        lblMenu.setBounds(30, -25, 400, 615);
+        lblMenu.setVisible(true);
+        pnlMenu.add(lblMenu);
 
         pnlMap = new JPanel();
         pnlMap.setOpaque(false);
@@ -90,34 +90,25 @@ public class Main extends JFrame implements KeyListener {
             public void keyPressed(KeyEvent e) {
                 int x = lblPacmanIcon.getX();
                 int y = lblPacmanIcon.getY();
-                switch (e.getKeyCode()) {
-                    case KeyEvent.VK_UP: {
-                        y -= 1;
-                        lblPacmanIcon.arah = 0;
-                        repaint();
-                        break;
-                    }
-                    case KeyEvent.VK_DOWN: {
-                        y += 1;
-                        lblPacmanIcon.arah = 1;
-                        repaint();
-                        break;
-                    }
-                    case KeyEvent.VK_LEFT: {
-                        x -= 1;
-                        lblPacmanIcon.arah = 2;
-                        repaint();
-                        break;
-                    }
-                    case KeyEvent.VK_RIGHT: {
-                        x += 1;
-                        lblPacmanIcon.arah = 3;
-                        repaint();
-                        break;
-                    }
-                    default:
-                        break;
+                if (e.getKeyCode() == KeyEvent.VK_UP && y > 53) {
+                    y -= 1;
+                    lblPacmanIcon.arah = 0;
+                    repaint();
+                } else if (e.getKeyCode() == KeyEvent.VK_DOWN && y < 504) {
+                    y += 1;
+                    lblPacmanIcon.arah = 1;
+                    repaint();
+                } else if (e.getKeyCode() == KeyEvent.VK_LEFT && x > 10) {
+                    x -= 1;
+                    lblPacmanIcon.arah = 2;
+                    repaint();
+                } else if (e.getKeyCode() == KeyEvent.VK_RIGHT && x < 411) {
+                    x += 1;
+                    lblPacmanIcon.arah = 3;
+                    repaint();
+
                 }
+
                 lblPacmanIcon.setLocation(x, y);
             }
         });
