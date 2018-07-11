@@ -98,7 +98,7 @@ public class Player extends Character implements Runnable{
             repaint();
 
             try {
-                Thread.sleep(12);
+                Thread.sleep(11);
             } catch (InterruptedException ex) {
                 System.out.println(System.err);
             }
