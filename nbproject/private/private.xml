@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/Main.java</file>
             <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/Ghost.java</file>
             <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/GhostHoming.java</file>
             <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/Player.java</file>
             <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/GhostPatrol.java</file>
+=======
+            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Player.java</file>
+            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/GhostHoming.java</file>
+            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Main.java</file>
+>>>>>>> ccb41e5f005b3a2a18b18fe37b346c58083d2532
         </group>
     </open-files>
 </project-private>
