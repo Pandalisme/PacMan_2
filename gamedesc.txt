@@ -1,0 +1,15 @@
+Pacman
+Gameplay Desc: Player dimulai dengan sebuah karakter pacman, dimana tujuan dari player adalah memakan semua koin/poin yang ada di dalam map (diindikasikan dengan titik-titik kuning). 
+Ghost/Hantu adalah karakter yang menjadi rintangan bagi player. Ghost sendiri, terdiri dari 2 tipe, yang mengejar dan patroli di map tersebut. Player tidak boleh bersentuhan dengan ghost, atau game tersebut dinyatakan selesai.
+Ada item power up yang dapat membantu player untuk memenangkan game ini, power up tersebut membuat ghost menjadi takut dan membuat pacman dapat memakan ghost yang mengejarnya.
+Dengan memakan ghost ketika sedang dalam buff power up, ghost akan kembali ke posisi awal (yaitu di tengah map) dan akan keluar beberapa saat kemudian.
+
+Classes:
+	Main (extends JFrame implements KeyListener, ActionListener) : berisikan method main dan pembangunan GUI Swing, beserta objek-objek lainnya seperti Map, Character, dan lain-lain. Berisikan juga listener dari beberapa objek.
+	Character (extends JLabel): sebuah label yang menginterpretasikan sebuah karakter di dalam game, yaitu ghost dan player.
+	Player (extends Character implements Runnable) : Class untuk objek player itu sendiri, yaitu pacman. Berisikan arah dari pacman, dan method jika memakan item atau ghost. Terdapat juga method run dari Runnable (Thread).
+	Ghost (extends Character): Merupakan parent dari kedua tipe ghost, yaitu GhostPatrol dan GhostHoming. Berisikan method dari aktivitas ghost-ghost tersebut. Contohnya, bila dimakan, atau pergi ke tempat awal.
+	Item : Merupakan sebuah parent untuk power up, dan coins.
+	
+
+	
