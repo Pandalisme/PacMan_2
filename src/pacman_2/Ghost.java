@@ -1,8 +1,12 @@
 package pacman_2;
 
-public class Ghost extends Character {
+public class Ghost extends Character implements Runnable{
 
     private boolean ghostRunning = false;
+	public static final int MOVE_UP = 0;
+	public static final int MOVE_RIGHT = 1;
+	public static final int MOVE_DOWN = 2;
+	public static final int MOVE_LEFT = 3;
 
 //	public void dead() {
 //		this.coordinateX = 0;
@@ -28,5 +32,11 @@ public class Ghost extends Character {
             return false;
         }
     }
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
