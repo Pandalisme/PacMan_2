@@ -252,6 +252,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         startDelay.schedule(pacmanThread, 2, TimeUnit.SECONDS);
         
     }
+<<<<<<< HEAD
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -262,4 +263,6 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         }
         count++;
     }
+=======
+>>>>>>> Agape
 }
