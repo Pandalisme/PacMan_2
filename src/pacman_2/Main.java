@@ -74,13 +74,13 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         
         setTitle("Pac-Man");
         setResizable(false);
-//        setUndecorated(true);
+        setUndecorated(true);
         setSize(448, 576);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.black);
         try {
-            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("D:\\Home\\Michael\\TUGAS2\\IF\\TUBES_OOP\\PacMan_2\\Pac-man - Copy.png")))));
+            this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Pac-man - Copy.png")))));
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
@@ -198,31 +198,35 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         pnlMap.add(lblAlias);
 
         lblPacmanIcon = new Player();
-        lblPacmanIcon.setIcon(new ImageIcon(resizeImage("D:\\Home\\Michael\\TUGAS2\\IF\\TUBES_OOP\\PacMan_2\\pac_man_chara.png", 25, 25)));
+        lblPacmanIcon.setIcon(new ImageIcon(resizeImage("pac_man_chara.png", 25, 25)));
         lblPacmanIcon.setBounds(11, 55, 25, 30);
         pnlMap.add(lblPacmanIcon);
 
         lblBlinkyIcon = new JLabel();
-        lblBlinkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Home\\Michael\\TUGAS2\\IF\\TUBES_OOP\\PacMan_2\\blinky.png", 25, 25)));
+        lblBlinkyIcon.setIcon(new ImageIcon(resizeImage("blinky.png", 25, 25)));
         lblBlinkyIcon.setBounds(178, 275, 25, 30);
         pnlMap.add(lblBlinkyIcon);
 
         lblPinkyIcon = new JLabel();
-        lblPinkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Home\\Michael\\TUGAS2\\IF\\TUBES_OOP\\PacMan_2\\pinky.png", 25, 25)));
+        lblPinkyIcon.setIcon(new ImageIcon(resizeImage("pinky.png", 25, 25)));
         lblPinkyIcon.setBounds(202, 255, 25, 30);
         pnlMap.add(lblPinkyIcon);
 
         lblInkyIcon = new JLabel();
-        lblInkyIcon.setIcon(new ImageIcon(resizeImage("D:\\Home\\Michael\\TUGAS2\\IF\\TUBES_OOP\\PacMan_2\\inky.png", 25, 25)));
+        lblInkyIcon.setIcon(new ImageIcon(resizeImage("inky.png", 25, 25)));
         lblInkyIcon.setBounds(228, 275, 25, 30);
         pnlMap.add(lblInkyIcon);
 
         lblClydeIcon = new JLabel();
-        lblClydeIcon.setIcon(new ImageIcon(resizeImage("D:\\Home\\Michael\\TUGAS2\\IF\\TUBES_OOP\\PacMan_2\\clyde.png", 25, 25)));
+        lblClydeIcon.setIcon(new ImageIcon(resizeImage("clyde.png", 25, 25)));
         lblClydeIcon.setBounds(247, 255, 25, 30);
         pnlMap.add(lblClydeIcon);
 
-//        System.out.println(lblPacmanIcon.getX());
+        File path = new File("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\src\\pacman_2\\Pac-man - Copy.png");
+        File curPath = new File(path.getParent());
+        curPath = new File(curPath.getParent());
+        String curName = curPath.getName().toString();
+        System.out.println(curName);
     }
 
     public static void main(String[] args) {
@@ -259,29 +263,3 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         count++;
     }
 }
-
-// ============================================= DOODLES ============================================================
-//    private Image resizeImage(String url){
-//        Image dimg = null;
-//        try{
-//            BufferedImage img = ImageIO.read(new File(url));
-//            dimg = img.getScaledInstance(426,547,Image.SCALE_SMOOTH);//426,547
-//        } catch (IOException ex){
-//            ex.printStackTrace(System.err);
-//        }
-//        return dimg;
-//    }
-//        
-//        pnlMap = new JPanel();
-//        pnlMap.setSize(448,576);
-//        pnlMap.setLocation(0,0);
-//        pnlMap.setBackground(Color.black);
-//        add(pnlMap,BorderLayout.NORTH);
-//        lblMap = new JLabel("Name : ");
-//        pnlMap.add(lblMap);
-//        txtText1 = new JTextField(10);
-//        pnlPanel1.add(txtText1);
-//        lblMapIcon = new JLabel();
-//        lblMapIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\Pac-man - Copy.png")));
-//        lblMapIcon.setLocation(0,0);
-//        pnlMap.add(lblMapIcon);
