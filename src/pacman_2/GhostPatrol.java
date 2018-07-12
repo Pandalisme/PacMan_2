@@ -43,7 +43,15 @@ public class GhostPatrol extends Ghost implements Runnable {
                     break;
 
             }
-
+            if (posX < 11) {
+                posX++;
+            } else if (posX > 412) {
+                posX--;
+            } else if (posY < 55) {
+                posY++;
+            } else if (posY > 505) {
+                posY--;
+            }
             this.setLocation(posX, posY);
             repaint();
 
