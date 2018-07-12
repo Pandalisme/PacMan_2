@@ -215,29 +215,3 @@ public class Main extends JFrame implements KeyListener {
         pnlMenu.hide();
     }
 }
-
-// ============================================= DOODLES ============================================================
-//    private Image resizeImage(String url){
-//        Image dimg = null;
-//        try{
-//            BufferedImage img = ImageIO.read(new File(url));
-//            dimg = img.getScaledInstance(426,547,Image.SCALE_SMOOTH);//426,547
-//        } catch (IOException ex){
-//            ex.printStackTrace(System.err);
-//        }
-//        return dimg;
-//    }
-//        
-//        pnlMap = new JPanel();
-//        pnlMap.setSize(448,576);
-//        pnlMap.setLocation(0,0);
-//        pnlMap.setBackground(Color.black);
-//        add(pnlMap,BorderLayout.NORTH);
-//        lblMap = new JLabel("Name : ");
-//        pnlMap.add(lblMap);
-//        txtText1 = new JTextField(10);
-//        pnlPanel1.add(txtText1);
-//        lblMapIcon = new JLabel();
-//        lblMapIcon.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\Pac-man - Copy.png")));
-//        lblMapIcon.setLocation(0,0);
-//        pnlMap.add(lblMapIcon);
