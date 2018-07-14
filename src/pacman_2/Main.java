@@ -236,6 +236,9 @@ public class Main extends JFrame implements KeyListener, ActionListener {
     private Coins coin179;
     private Coins coin180;
     private Coins coin181;
+    
+    
+    Font mainFont = null;
 
     public Main() {
         initComponents();
@@ -266,13 +269,33 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.black);
+        
+        //Registering external Fonts
+
+        try {
+        	BufferedInputStream fontFileStream = new BufferedInputStream(new FileInputStream("fonts/emulogic.ttf"));
+        	mainFont = Font.createFont(Font.TRUETYPE_FONT, fontFileStream);
+        	
+        	GraphicsEnvironment genv = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        	genv.registerFont(mainFont);
+        	
+        	mainFont = mainFont.deriveFont(12f);
+        	
+        	System.out.println("Font loaded.");
+        	
+        }catch (IOException|FontFormatException ex) {
+        	System.out.println("Error : " + ex.getMessage());
+        }
+        
+        
         try {
             this.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("picture/map.png")))));
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
         getContentPane().setLayout(null);
-
+        
+        
         pnlMenu = new JPanel();
         pnlMenu.setBounds(0, 0, 464, 615);
         pnlMenu.setBackground(Color.black);
@@ -283,14 +306,14 @@ public class Main extends JFrame implements KeyListener, ActionListener {
 
         lblTitle = new JLabel("PACMAN");
         lblTitle.setForeground(Color.white);
-        lblTitle.setFont(new Font("Emulogic", Font.PLAIN, 32));
+        lblTitle.setFont(mainFont.deriveFont(32f));
         lblTitle.setVisible(true);
         lblTitle.setBounds(120, 160, 300, 100);
         pnlMenu.add(lblTitle);
 
         lblMenu = new JLabel("Press any key to start");
         lblMenu.setForeground(Color.white);
-        lblMenu.setFont(new Font("Emulogic", Font.PLAIN, 12));
+        lblMenu.setFont(mainFont.deriveFont(12f));
         lblMenu.setBounds(90, 10, 400, 615);
         lblMenu.setVisible(true);
         pnlMenu.add(lblMenu);
@@ -362,25 +385,25 @@ public class Main extends JFrame implements KeyListener, ActionListener {
 
         lblLife = new JLabel("Life : ");
         lblLife.setForeground(Color.white);
-        lblLife.setFont(new Font("Emulogic", Font.PLAIN, 12));
+        lblLife.setFont(mainFont.deriveFont(12f));
         lblLife.setBounds(13, 534, 90, 50);
         pnlMap.add(lblLife);
 
         lblTitleScore = new JLabel("Score");
         lblTitleScore.setForeground(Color.white);
-        lblTitleScore.setFont(new Font("Emulogic", Font.PLAIN, 18));
+        lblTitleScore.setFont(mainFont.deriveFont(18f));
         lblTitleScore.setBounds(15, 7, 120, 35);
         pnlMap.add(lblTitleScore);
 
         lblScore = new JLabel("123");
         lblScore.setForeground(Color.white);
-        lblScore.setFont(new Font("Emulogic", Font.PLAIN, 18));
+        lblScore.setFont(mainFont.deriveFont(18f));
         lblScore.setBounds(195, 7, 140, 35);
         pnlMap.add(lblScore);
 
         lblAlias = new JLabel("Pac");
         lblAlias.setForeground(Color.white);
-        lblAlias.setFont(new Font("Emulogic", Font.PLAIN, 18));
+        lblAlias.setFont(mainFont.deriveFont(18f));
         lblAlias.setBounds(358, 7, 120, 35);
         pnlMap.add(lblAlias);
 
@@ -843,9 +866,12 @@ public class Main extends JFrame implements KeyListener, ActionListener {
     }
 
     public static void main(String[] args) {
+    	
         new Main().setVisible(true);
     }
 
+   
+    
     @Override
     public void keyTyped(KeyEvent e) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
