@@ -1,16 +1,13 @@
 package pacman_2;
 
-import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.geom.Area;
-import javax.swing.JLabel;
-import java.io.*;
-import javax.imageio.ImageIO;
+import java.awt.*;
+        
 import static pacman_2.Main.lblPacmanIcon;
 import static pacman_2.Main.listGhost;
 import static pacman_2.Main.lblLifePoint;
+import static pacman_2.Main.lblScore;
+import static pacman_2.Main.listCoins;
 
 /**
  *
@@ -85,6 +82,13 @@ public class Player extends Character implements Runnable {
 
         return areaA.intersects(areaB.getBounds2D());
     }
+    
+    public boolean intersectsCoins(int i) {
+        Area areaA = new Area(lblPacmanIcon.getBounds());
+        Area areaB = new Area(listCoins.get(i).getBounds());
+
+        return areaA.intersects(areaB.getBounds2D());
+    }
 
     @Override
     public void run() {
@@ -147,9 +151,20 @@ public class Player extends Character implements Runnable {
                 System.out.println("Cooldown : " + cooldownTime);
                 listGhost.get(2).setVisible(true);
             }
-
+            
             lblLifePoint.setText(String.valueOf(life));
-
+            
+            for (int j = 0; j < listCoins.size(); j++) {
+                if(intersectsCoins(j)){
+                    if(listCoins.get(j).isShowing() == true){
+                        points += 100;
+                        System.out.println("+Points : " + j);
+                        listCoins.get(j).setVisible(false);
+                        lblScore.setText(String.valueOf(points));
+                    }
+                }
+            }
+            
             this.setLocation(x, y);
             repaint();
 

@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
@@ -37,7 +35,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
     private JLabel lblLife;
     public static JLabel lblLifePoint = new JLabel("3");
     private JLabel lblTitleScore;
-    private JLabel lblScore;
+    public static JLabel lblScore;
     private JLabel lblAlias;
 
     public static Player lblPacmanIcon = new Player();
@@ -61,6 +59,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
 
     // private coins
     private Coins coin;
+    public static ArrayList<Coins> listCoins = new ArrayList<>();
     Font mainFont = null;
 
     public Main() {
@@ -439,13 +438,12 @@ public class Main extends JFrame implements KeyListener, ActionListener {
                 if (temp[i][j] == 1) {
                     coin = new Coins(x1, y1);
                     pnlMap.add(coin);
+                    listCoins.add(coin);
                 } else if (temp[i][j] == 0) {
                     //tembok
                     JLabel wall = new JLabel();
                     wall.setBounds(x1, y1, 10, 10);
-//                    wall.setForeground(Color.WHITE);
-//                    wall.setLocation(x1, y1);
-//                    wall.setIcon(new ImageIcon("D:\\Home\\Michael\\TUGAS2\\IF\\TUBES_OOP\\PacMan_2\\testwall.png"));
+                    wall.setIcon(new ImageIcon("picture/testwall.png"));
                     pnlMap.add(wall);
                 }
                 if (j == 10) {
