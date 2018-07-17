@@ -125,7 +125,7 @@ public class Player extends Character implements Runnable {
                 life--;
                 System.out.println("Life : " + life);
                 cooldownTime = i + 400;
-                listGhost.get(0).setVisible(trues);
+                listGhost.get(0).setVisible(true);
                 System.out.println("Cooldown : " + cooldownTime);
                 
             } else if (intersectsGhost(1) && cooldown == false) {
