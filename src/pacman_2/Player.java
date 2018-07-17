@@ -118,33 +118,43 @@ public class Player extends Character implements Runnable {
                 y--;
             }
 
-            if (intersectsGhost(0) && !cooldown) {
+            if (intersectsGhost(0) && cooldown == false) {
+                listGhost.get(0).setVisible(false);
                 cooldown = true;
                 System.out.println("Collide with Blinky! : " + i);
-                setLife(getLife() - 1);
+                life--;
+                System.out.println("Life : " + life);
                 cooldownTime = i + 400;
-                System.out.println("Life : " + getLife());
-            } else if (intersectsGhost(1) && !cooldown) {
+                listGhost.get(0).setVisible(trues);
+                System.out.println("Cooldown : " + cooldownTime);
+                
+            } else if (intersectsGhost(1) && cooldown == false) {
+                listGhost.get(1).setVisible(false);
                 cooldown = true;
                 System.out.println("Collide with Inky!   : " + i);
-                setLife(getLife() - 1);
-                System.out.println("Life : " + getLife());
+                life--;
+                System.out.println("Life : " + life);
                 cooldownTime = i + 400;
-            } else if (intersectsGhost(2) && !cooldown) {
+                System.out.println("Cooldown : " + cooldownTime);
+                listGhost.get(1).setVisible(true);
+            } else if (intersectsGhost(2) && cooldown == false) {
+                listGhost.get(2).setVisible(false);
                 cooldown = true;
                 System.out.println("Collide with Clyde!  : " + i);
-                setLife(getLife() - 1);
-                System.out.println("Life : " + getLife());
+                life--;
+                System.out.println("Life : " + life);
                 cooldownTime = i + 400;
+                System.out.println("Cooldown : " + cooldownTime);
+                listGhost.get(2).setVisible(true);
             }
 
-            lblLifePoint.setText(String.valueOf(getLife()));
+            lblLifePoint.setText(String.valueOf(life));
 
             this.setLocation(x, y);
             repaint();
 
             try {
-                Thread.sleep(11);
+                Thread.sleep(12);
             } catch (InterruptedException ex) {
                 System.out.println(System.err);
             }
