@@ -5,6 +5,7 @@
         <group>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/Main.java</file>
             <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/Ghost.java</file>
             <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/GhostHoming.java</file>
@@ -20,6 +21,12 @@
             <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/GhostHoming.java</file>
             <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Main.java</file>
 >>>>>>> 5c15d5fdb4d5fd8eb6170ab05e7d182847d6b961
+=======
+            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/GhostMovementHandler.java</file>
+            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/GhostPatrol.java</file>
+            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Main.java</file>
+            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Player.java</file>
+>>>>>>> 6bb224bf446314a097e1d28eb858922643f6dcae
         </group>
     </open-files>
 </project-private>
