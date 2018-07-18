@@ -16,7 +16,11 @@ import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
@@ -38,7 +42,7 @@ public class Main extends JFrame implements KeyListener, ActionListener{
     public static JLabel lblScore;
     private JLabel lblAlias;
 
-    public static Player lblPacmanIcon = new Player();
+    public static Player lblPacmanIcon;
 
     // private JLabel lblPacmanIcon;
     private GhostHoming lblPinkyIcon;
@@ -61,6 +65,8 @@ public class Main extends JFrame implements KeyListener, ActionListener{
     private Coins coin;
     public static ArrayList<Coins> listCoins = new ArrayList<>();
 
+    public static ArrayList<JLabel> listWall = new ArrayList<>();
+
     //Threads
     public static Thread pacmanThread;
     public static Thread blinkytHandler;
@@ -70,10 +76,18 @@ public class Main extends JFrame implements KeyListener, ActionListener{
     Font mainFont = null;
 
     public Main() {
-        initComponents();
-        timerBlink = new Timer(700, Main.this);
-
-        timerBlink.start();
+        try {
+            initComponents();
+            timerBlink = new Timer(700, Main.this);
+            
+            timerBlink.start();
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -88,7 +102,7 @@ public class Main extends JFrame implements KeyListener, ActionListener{
         return dimg;
     }
 
-    public void initComponents() {
+    public void initComponents() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         setTitle("Pac-Man");
         setResizable(false);
@@ -236,7 +250,8 @@ public class Main extends JFrame implements KeyListener, ActionListener{
         lblAlias.setFont(mainFont.deriveFont(18f));
         lblAlias.setBounds(358, 7, 120, 35);
         pnlMap.add(lblAlias);
-
+        
+        lblPacmanIcon = new Player();
         lblPacmanIcon.setIcon(new ImageIcon(resizeImage("picture/pacman.png", 25, 25)));
         lblPacmanIcon.setBounds(11, 263, 25, 25);
         lblPacmanIcon.setDoubleBuffered(true);
@@ -292,7 +307,7 @@ public class Main extends JFrame implements KeyListener, ActionListener{
         });
         mainThread.start();
 
-        pacmanThread.start();
+//        pacmanThread.start();
         blinkytHandler.start();
         inkyHandler.start();
         clydeHandler.start();
@@ -454,9 +469,10 @@ public class Main extends JFrame implements KeyListener, ActionListener{
                 } else if (temp[i][j] == 0) {
                     //tembok
                     JLabel wall = new JLabel();
-                    wall.setBounds(x1 - 4, y1 - 4, 10, 10);
+                    wall.setBounds(x1, y1 - 4, 7, 7);
                     wall.setIcon(new ImageIcon("picture/testwall.png"));
                     pnlMap.add(wall);
+                    listWall.add(wall);
                 }
                 if (j == 10) {
                     x1 += 25;
@@ -494,9 +510,9 @@ public class Main extends JFrame implements KeyListener, ActionListener{
     public void keyPressed(KeyEvent e) {
         pnlMenu.hide();
         timerBlink.stop();
-
+        
         Thread pacmanThread = new Thread(lblPacmanIcon);
-        startDelay.schedule(pacmanThread, 2, TimeUnit.SECONDS);
+        startDelay.schedule(pacmanThread, 3, TimeUnit.SECONDS);
 
     }
 
