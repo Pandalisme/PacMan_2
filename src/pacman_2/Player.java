@@ -23,6 +23,8 @@ public class Player extends Character implements Runnable {
     private boolean cooldown = false;
     int arah = 3;
     int prev_arah;
+    int i = 0;
+    private boolean isGameOver;
 
     public Player() {
 //        prev_arah = this.arah;
@@ -89,14 +91,20 @@ public class Player extends Character implements Runnable {
 
         return areaA.intersects(areaB.getBounds2D());
     }
+    
+    public void gameOver (){
+        isGameOver = true;
+    }
 
     @Override
     public void run() {
         int x = this.getX();
         int y = this.getY();
         this.setVisible(true);
+        
+        isGameOver = false;
 
-        for (int i = 0;; i++) {
+        while(!isGameOver){
             if (cooldownTime == i) {
                 cooldown = false;
                 System.out.println("cooldown status : " + cooldown);
@@ -173,6 +181,7 @@ public class Player extends Character implements Runnable {
             } catch (InterruptedException ex) {
                 System.out.println(System.err);
             }
+            i++;
         }
 
     }
