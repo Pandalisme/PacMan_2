@@ -1,16 +1,13 @@
 package pacman_2;
 
-import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.geom.Area;
-import javax.swing.JLabel;
-import java.io.*;
-import javax.imageio.ImageIO;
+import java.awt.*;
+        
 import static pacman_2.Main.lblPacmanIcon;
 import static pacman_2.Main.listGhost;
 import static pacman_2.Main.lblLifePoint;
+import static pacman_2.Main.lblScore;
+import static pacman_2.Main.listCoins;
 
 /**
  *
@@ -26,6 +23,8 @@ public class Player extends Character implements Runnable {
     private boolean cooldown = false;
     int arah = 3;
     int prev_arah;
+    int i = 0;
+    private boolean isGameOver;
 
     public Player() {
 //        prev_arah = this.arah;
@@ -85,14 +84,27 @@ public class Player extends Character implements Runnable {
 
         return areaA.intersects(areaB.getBounds2D());
     }
+    
+    public boolean intersectsCoins(int i) {
+        Area areaA = new Area(lblPacmanIcon.getBounds());
+        Area areaB = new Area(listCoins.get(i).getBounds());
+
+        return areaA.intersects(areaB.getBounds2D());
+    }
+    
+    public void gameOver (){
+        isGameOver = true;
+    }
 
     @Override
     public void run() {
         int x = this.getX();
         int y = this.getY();
         this.setVisible(true);
+        
+        isGameOver = false;
 
-        for (int i = 0;; i++) {
+        while(!isGameOver){
             if (cooldownTime == i) {
                 cooldown = false;
                 System.out.println("cooldown status : " + cooldown);
@@ -125,7 +137,7 @@ public class Player extends Character implements Runnable {
                 life--;
                 System.out.println("Life : " + life);
                 cooldownTime = i + 400;
-                listGhost.get(0).setVisible(trues);
+                listGhost.get(0).setVisible(true);
                 System.out.println("Cooldown : " + cooldownTime);
                 
             } else if (intersectsGhost(1) && cooldown == false) {
@@ -147,9 +159,20 @@ public class Player extends Character implements Runnable {
                 System.out.println("Cooldown : " + cooldownTime);
                 listGhost.get(2).setVisible(true);
             }
-
+            
             lblLifePoint.setText(String.valueOf(life));
-
+            
+            for (int j = 0; j < listCoins.size(); j++) {
+                if(intersectsCoins(j)){
+                    if(listCoins.get(j).isShowing() == true){
+                        points += 100;
+                        System.out.println("+Points : " + j);
+                        listCoins.get(j).setVisible(false);
+                        lblScore.setText(String.valueOf(points));
+                    }
+                }
+            }
+            
             this.setLocation(x, y);
             repaint();
 
@@ -158,6 +181,7 @@ public class Player extends Character implements Runnable {
             } catch (InterruptedException ex) {
                 System.out.println(System.err);
             }
+            i++;
         }
 
     }

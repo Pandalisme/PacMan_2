@@ -53,6 +53,6 @@ public class Coins extends JLabel{
     }
     
     public void show(){
-        this.setIcon(new ImageIcon(resizeImage("D:\\Latihan\\SP 1\\PBO\\PacMan_2\\coin.png", 8, 8)));
+        this.setIcon(new ImageIcon(resizeImage("picture/coin.png", 8, 8)));
     }
 }

@@ -30,7 +30,26 @@ public class GhostPatrol extends Ghost implements Runnable {
 
     private int direction = 0;
 
-    public GhostPatrol() {
+    private int posX;
+    private int posY;
+    
+    public int getPosX() {
+		return posX;
+	}
+
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+
+	public GhostPatrol() {
 
     }
 
@@ -44,8 +63,8 @@ public class GhostPatrol extends Ghost implements Runnable {
 
     @Override
     public void run() {
-        int posX = this.getX();
-        int posY = this.getY();
+        posX = this.getX();
+        posY = this.getY();
 
         while (true) {
             switch (direction) {
@@ -63,6 +82,7 @@ public class GhostPatrol extends Ghost implements Runnable {
                     break;
 
             }
+            
             if (posX < 11) {
                 posX++;
             } else if (posX > 412) {
@@ -72,6 +92,7 @@ public class GhostPatrol extends Ghost implements Runnable {
             } else if (posY > 505) {
                 posY--;
             }
+            
             this.setLocation(posX, posY);
             repaint();
 

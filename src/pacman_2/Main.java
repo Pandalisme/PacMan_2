@@ -4,6 +4,7 @@ import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 //import java.awt.event.ActionEvent;
+import java.util.Arrays;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -15,17 +16,16 @@ import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 /**
  *
  * @author Pacman Group
  */
-public class Main extends JFrame implements KeyListener, ActionListener {
+public class Main extends JFrame implements KeyListener, ActionListener{
 
     public static List<GhostPatrol> listGhost = new ArrayList<>();
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 	private JPanel pnlMap;
@@ -274,6 +274,9 @@ public class Main extends JFrame implements KeyListener, ActionListener {
 // lblMapIcon.setLocation(0,0);
 // pnlMap.add(lblMapIcon);
 =======
+=======
+    private Main main;
+>>>>>>> master
     private JPanel pnlMap;
 
     private JPanel pnlMenu;
@@ -283,7 +286,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
     private JLabel lblLife;
     public static JLabel lblLifePoint = new JLabel("3");
     private JLabel lblTitleScore;
-    private JLabel lblScore;
+    public static JLabel lblScore;
     private JLabel lblAlias;
 
     public static Player lblPacmanIcon = new Player();
@@ -306,6 +309,15 @@ public class Main extends JFrame implements KeyListener, ActionListener {
     private ScheduledExecutorService startDelay = Executors.newSingleThreadScheduledExecutor();
 
     // private coins
+    private Coins coin;
+    public static ArrayList<Coins> listCoins = new ArrayList<>();
+
+    //Threads
+    public static Thread pacmanThread;
+    public static Thread blinkytHandler;
+    public static Thread inkyHandler;
+    public Thread clydeHandler;
+
     Font mainFont = null;
 
     public Main() {
@@ -337,6 +349,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.black);
+        int stat;
 
         //Registering external Fonts
         try {
@@ -451,7 +464,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         lblLife.setFont(mainFont.deriveFont(12f));
         lblLife.setBounds(13, 534, 90, 50);
         pnlMap.add(lblLife);
-        
+
         lblLifePoint.setForeground(Color.white);
         lblLifePoint.setFont(mainFont.deriveFont(12f));
         lblLifePoint.setBounds(113, 534, 90, 50);
@@ -476,7 +489,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         pnlMap.add(lblAlias);
 
         lblPacmanIcon.setIcon(new ImageIcon(resizeImage("picture/pacman.png", 25, 25)));
-        lblPacmanIcon.setBounds(11, 55, 25, 30);
+        lblPacmanIcon.setBounds(11, 263, 25, 25);
         lblPacmanIcon.setDoubleBuffered(true);
         pnlMap.add(lblPacmanIcon);
 
@@ -486,38 +499,231 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         pnlMap.add(lblPinkyIcon);
 
         lblBlinkyIcon = new GhostPatrol();
-        blinkyMH = new GhostMovementHandler(lblBlinkyIcon);
         lblBlinkyIcon.setIcon(new ImageIcon(resizeImage("picture/blinky.png", 25, 25)));
         lblBlinkyIcon.setBounds(178, 275, 25, 30);
         pnlMap.add(lblBlinkyIcon);
+        blinkyMH = new GhostMovementHandler(lblBlinkyIcon);
 
         lblInkyIcon = new GhostPatrol();
-        inkyMH = new GhostMovementHandler(lblInkyIcon);
         lblInkyIcon.setIcon(new ImageIcon(resizeImage("picture/inky.png", 25, 25)));
         lblInkyIcon.setBounds(228, 275, 25, 30);
         pnlMap.add(lblInkyIcon);
+        inkyMH = new GhostMovementHandler(lblInkyIcon);
 
         lblClydeIcon = new GhostPatrol();
-        clydeMH = new GhostMovementHandler(lblClydeIcon);
         lblClydeIcon.setIcon(new ImageIcon(resizeImage("picture/clyde.png", 25, 25)));
         lblClydeIcon.setBounds(247, 255, 25, 30);
         pnlMap.add(lblClydeIcon);
+        clydeMH = new GhostMovementHandler(lblClydeIcon);
 
         listGhost.add(lblBlinkyIcon);
         listGhost.add(lblInkyIcon);
         listGhost.add(lblClydeIcon);
 
-        Thread pacmanThread = new Thread(lblPacmanIcon);
+        pacmanThread = new Thread(lblPacmanIcon);
+        blinkytHandler = new Thread(blinkyMH);
+        inkyHandler = new Thread(inkyMH);
+        clydeHandler = new Thread(clydeMH);
+        Thread mainThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (lblPacmanIcon.getLife() <= 0) {
+                        lblPacmanIcon.gameOver();
+                        pnlMap.setFocusable(false);
+                    }
+                    try {
+                        Thread.sleep (10);
+                    }
+                    catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            }
+        });
+        mainThread.start();
+
         pacmanThread.start();
-
-        Thread blinkytHandler = new Thread(blinkyMH);
         blinkytHandler.start();
-
-        Thread inkyHandler = new Thread(inkyMH);
         inkyHandler.start();
-
-        Thread clydeHandler = new Thread(clydeMH);
         clydeHandler.start();
+
+        //Set posisi coin dan wall
+        //array 2 dimensi posisi dari label coin dan wall pada map
+        int[][] temp = new int[23][21];
+        for (int i = 0; i < 23; i++) {
+            Arrays.fill(temp[i], 1);
+        }
+
+        //set posisi wall baris 1-9
+        for (int i = 1; i < 10; i++) {
+            if (i != 3 && i != 6) {
+                //kiri
+                for (int j = 1; j < 4; j++) {
+                    temp[i][j] = 0;
+                }
+                //kanan
+                for (int j = 17; j < 20; j++) {
+                    temp[i][j] = 0;
+                }
+            }
+
+            //sisi kanan
+            if (i == 1 || i == 2) {
+                for (int j = 5; j < 9; j++) {
+                    temp[i][j] = 0;
+                }
+                for (int j = 12; j < 16; j++) {
+                    temp[i][j] = 0;
+                }
+            }
+
+            //wall paling ujung2 kanan dan kiri
+            if (i == 7 || i == 8 || i == 9) {
+                temp[i][0] = 0;
+                temp[i][20] = 0;
+            }
+
+            //tengah kosong
+            if (i >= 4) {
+                for (int j = 5; j < 16; j++) {
+                    temp[i][j] = 2;
+                }
+            }
+
+        }
+
+        //baris 11 
+        for (int i = 0; i < 21; i++) {
+            temp[10][i] = 2;
+        }
+
+        //set posisi wall baris 12-21
+        for (int i = 11; i < 22; i++) {
+            if (i < 15) {
+                //kiri
+                for (int j = 0; j < 4; j++) {
+                    temp[i][j] = 0;
+                }
+                //kanan
+                for (int j = 17; j < 21; j++) {
+                    temp[i][j] = 0;
+                }
+            }
+            //tengah kosong
+            if (i < 15) {
+                for (int j = 5; j < 16; j++) {
+                    temp[i][j] = 2;
+                }
+            } else if (i >= 15 && i < 22) {
+                if (i == 16) {
+                    //kiri
+                    for (int j = 1; j < 4; j++) {
+                        temp[i][j] = 0;
+                    }
+                    for (int j = 5; j < 9; j++) {
+                        temp[i][j] = 0;
+                    }
+                    //kanan
+                    for (int j = 17; j < 20; j++) {
+                        temp[i][j] = 0;
+                    }
+                    for (int j = 12; j < 16; j++) {
+                        temp[i][j] = 0;
+                    }
+                } else if (i == 17) {
+                    //kiri
+                    for (int j = 1; j < 20; j++) {
+                        if (j == 3 || j == 17) {
+                            temp[i][j] = 0;
+                        }
+                    }
+                } else if (i == 18) {
+                    //kiri
+                    for (int j = 0; j < 8; j++) {
+                        if (j == 2 || j == 4 || j == 6) {
+                            temp[i][j] = 1;
+                        } else {
+                            temp[i][j] = 0;
+                        }
+                    }
+                    for (int j = 8; j < 21; j++) {
+                        if (j == 14 || j == 16 || j == 18) {
+                            temp[i][j] = 1;
+                        } else {
+                            temp[i][j] = 0;
+                        }
+                    }
+                } else if (i == 19) {
+                    for (int j = 5; j < 16; j++) {
+                        if (j == 5 || j == 10 || j == 15) {
+                            temp[i][j] = 0;
+                        }
+                    }
+                } else if (i == 20) {
+                    for (int j = 1; j < 9; j++) {
+                        temp[i][j] = 0;
+                    }
+                    for (int j = 10; j < 20; j++) {
+                        if (j == 11) {
+                            temp[i][j] = 1;
+                        } else {
+                            temp[i][j] = 0;
+                        }
+                    }
+                } else if (i == 21) {
+                    for (int j = 1; j < 20; j++) {
+                        if (j == 9 || j == 11) {
+                            temp[i][j] = 1;
+                        } else {
+                            temp[i][j] = 0;
+                        }
+
+                    }
+                }
+            }
+        }
+
+        //wall tengah baris 1 - 3
+        for (int i = 0; i < 3; i++) {
+            temp[i][10] = 0;
+        }
+
+        temp[15][10] = 0;
+        temp[16][10] = 0;
+
+        //print coin
+        int y1 = 70;
+        for (int i = 0; i < 23; i++) {
+            int x1 = 20;
+            for (int j = 0; j < 21; j++) {
+                //coin
+                if (temp[i][j] == 1) {
+                    coin = new Coins(x1, y1);
+                    pnlMap.add(coin);
+                    listCoins.add(coin);
+                } else if (temp[i][j] == 0) {
+                    //tembok
+                    JLabel wall = new JLabel();
+                    wall.setBounds(x1 - 4, y1 - 4, 10, 10);
+                    wall.setIcon(new ImageIcon("picture/testwall.png"));
+                    pnlMap.add(wall);
+                }
+                if (j == 10) {
+                    x1 += 25;
+                } else {
+                    x1 += 20;
+                }
+
+            }
+            if (i == 9 || i == 15 || i == 17) {
+                y1 += 25;
+            } else if (i == 21) {
+                y1 += 15;
+            } else {
+                y1 += 20;
+            }
+        }
     }
 
     public static void main(String[] args) {
