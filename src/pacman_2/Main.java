@@ -16,17 +16,24 @@ import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  *
  * @author Pacman Group
  */
-public class Main extends JFrame implements KeyListener, ActionListener{
+public class Main extends JFrame implements KeyListener, ActionListener {
 
     public static List<GhostPatrol> listGhost = new ArrayList<>();
     private Main main;
     private JPanel pnlMap;
+    
+    private JPanel gameOver;
+    private JLabel lblGameOver;
 
     private JPanel pnlMenu;
     private JLabel lblMenu;
@@ -36,12 +43,13 @@ public class Main extends JFrame implements KeyListener, ActionListener{
     public static JLabel lblLifePoint = new JLabel("3");
     private JLabel lblTitleScore;
     public static JLabel lblScore;
-    private JLabel lblAlias;
+    public static JLabel lblHighScore;
 
-    public static Player lblPacmanIcon = new Player();
+    public static Player lblPacmanIcon;
 
     // private JLabel lblPacmanIcon;
-    private GhostHoming lblPinkyIcon;
+    private GhostPatrol lblPinkyIcon;
+    private GhostMovementHandler pinkyMH;
     private GhostPatrol lblBlinkyIcon;
     private GhostMovementHandler blinkyMH;
     private GhostPatrol lblInkyIcon;
@@ -61,19 +69,30 @@ public class Main extends JFrame implements KeyListener, ActionListener{
     private Coins coin;
     public static ArrayList<Coins> listCoins = new ArrayList<>();
 
+    public static ArrayList<JLabel> listWall = new ArrayList<>();
+
     //Threads
     public static Thread pacmanThread;
     public static Thread blinkytHandler;
     public static Thread inkyHandler;
+    public static Thread pinkyHandler;
     public Thread clydeHandler;
 
     Font mainFont = null;
 
     public Main() {
-        initComponents();
-        timerBlink = new Timer(700, Main.this);
+        try {
+            initComponents();
+            timerBlink = new Timer(700, Main.this);
 
-        timerBlink.start();
+            timerBlink.start();
+        } catch (UnsupportedAudioFileException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (LineUnavailableException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -88,7 +107,7 @@ public class Main extends JFrame implements KeyListener, ActionListener{
         return dimg;
     }
 
-    public void initComponents() {
+    public void initComponents() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         setTitle("Pac-Man");
         setResizable(false);
@@ -200,6 +219,12 @@ public class Main extends JFrame implements KeyListener, ActionListener{
                         repaint();
                         break;
                     }
+                    case KeyEvent.VK_F5:
+                    	lblBlinkyIcon.setGhostRun(5);
+                    	lblInkyIcon.setGhostRun(5);
+                    	lblClydeIcon.setGhostRun(5);
+                    	
+                    	break;
                     default:
                         break;
                 }
@@ -231,21 +256,24 @@ public class Main extends JFrame implements KeyListener, ActionListener{
         lblScore.setBounds(195, 7, 140, 35);
         pnlMap.add(lblScore);
 
-        lblAlias = new JLabel("Pac");
-        lblAlias.setForeground(Color.white);
-        lblAlias.setFont(mainFont.deriveFont(18f));
-        lblAlias.setBounds(358, 7, 120, 35);
-        pnlMap.add(lblAlias);
+        lblHighScore = new JLabel("");
+        DataAkses.showHighscore();
+        lblHighScore.setForeground(Color.white);
+        lblHighScore.setFont(mainFont.deriveFont(18f));
+        lblHighScore.setBounds(358, 7, 120, 35);
+        pnlMap.add(lblHighScore);
 
+        lblPacmanIcon = new Player();
         lblPacmanIcon.setIcon(new ImageIcon(resizeImage("picture/pacman.png", 25, 25)));
         lblPacmanIcon.setBounds(11, 263, 25, 25);
         lblPacmanIcon.setDoubleBuffered(true);
         pnlMap.add(lblPacmanIcon);
 
-        lblPinkyIcon = new GhostHoming();
+        lblPinkyIcon = new GhostPatrol();
         lblPinkyIcon.setIcon(new ImageIcon(resizeImage("picture/pinky.png", 25, 25)));
         lblPinkyIcon.setBounds(202, 255, 25, 30);
         pnlMap.add(lblPinkyIcon);
+        pinkyMH = new GhostMovementHandler(lblPinkyIcon);
 
         lblBlinkyIcon = new GhostPatrol();
         lblBlinkyIcon.setIcon(new ImageIcon(resizeImage("picture/blinky.png", 25, 25)));
@@ -268,11 +296,13 @@ public class Main extends JFrame implements KeyListener, ActionListener{
         listGhost.add(lblBlinkyIcon);
         listGhost.add(lblInkyIcon);
         listGhost.add(lblClydeIcon);
+        listGhost.add(lblPinkyIcon);
 
         pacmanThread = new Thread(lblPacmanIcon);
         blinkytHandler = new Thread(blinkyMH);
         inkyHandler = new Thread(inkyMH);
         clydeHandler = new Thread(clydeMH);
+        pinkyHandler = new Thread(pinkyMH);
         Thread mainThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -280,11 +310,30 @@ public class Main extends JFrame implements KeyListener, ActionListener{
                     if (lblPacmanIcon.getLife() <= 0) {
                         lblPacmanIcon.gameOver();
                         pnlMap.setFocusable(false);
+                        gameOver = new JPanel();
+                        gameOver.setSize(448, 567);
+                        gameOver.setBackground(Color.black);
+                        add(gameOver);
+                        gameOver.setLayout(null);
+
+                        lblGameOver = new JLabel("GAMEOVER");
+                        lblGameOver.setFont(mainFont.deriveFont(12f));
+                        lblGameOver.setForeground(Color.white);
+                        lblGameOver.setBounds(200, 200, 200, 200);
+                        gameOver.add(lblGameOver);
+                        pnlMap.setVisible(false);
+                        lblPacmanIcon.setVisible(false);
+                        lblClydeIcon.setVisible(false);
+                        lblInkyIcon.setVisible(false);
+                        lblBlinkyIcon.setVisible(false);
+                        lblPinkyIcon.setVisible(false);
+                        DataAkses.addScore(lblPacmanIcon);
+                        break;
+
                     }
                     try {
-                        Thread.sleep (10);
-                    }
-                    catch (Exception ex) {
+                        Thread.sleep(10);
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 }
@@ -292,10 +341,11 @@ public class Main extends JFrame implements KeyListener, ActionListener{
         });
         mainThread.start();
 
-        pacmanThread.start();
+//        pacmanThread.start();
         blinkytHandler.start();
         inkyHandler.start();
         clydeHandler.start();
+        pinkyHandler.start();
 
         //Set posisi coin dan wall
         //array 2 dimensi posisi dari label coin dan wall pada map
@@ -454,9 +504,10 @@ public class Main extends JFrame implements KeyListener, ActionListener{
                 } else if (temp[i][j] == 0) {
                     //tembok
                     JLabel wall = new JLabel();
-                    wall.setBounds(x1 - 4, y1 - 4, 10, 10);
+                    wall.setBounds(x1, y1 - 4, 7, 7);
                     wall.setIcon(new ImageIcon("picture/testwall.png"));
                     pnlMap.add(wall);
+                    listWall.add(wall);
                 }
                 if (j == 10) {
                     x1 += 25;
@@ -496,7 +547,7 @@ public class Main extends JFrame implements KeyListener, ActionListener{
         timerBlink.stop();
 
         Thread pacmanThread = new Thread(lblPacmanIcon);
-        startDelay.schedule(pacmanThread, 2, TimeUnit.SECONDS);
+        startDelay.schedule(pacmanThread, 3, TimeUnit.SECONDS);
 
     }
 

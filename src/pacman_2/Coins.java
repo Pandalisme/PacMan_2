@@ -6,6 +6,7 @@
 package pacman_2;
 
 import java.awt.Image;
+import java.awt.geom.Area;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +20,10 @@ import javax.swing.JLabel;
  */
 public class Coins extends JLabel{
     private int points;
+    
+    public Coins(){
+       this.setSize(5, 5);
+    }
     
     public Coins(int x, int y){
         show();
@@ -44,6 +49,7 @@ public class Coins extends JLabel{
         }
         return dimg;
     }
+    
     public int getPoints() {
         return points;
     }

@@ -1,16 +1,40 @@
 package pacman_2;
 
+import java.awt.geom.Area;
 import java.util.Random;
+import static pacman_2.Ghost.MOVE_DOWN;
+import static pacman_2.Ghost.MOVE_LEFT;
+import static pacman_2.Ghost.MOVE_RIGHT;
+import static pacman_2.Ghost.MOVE_UP;
 
 /**
  *
  * @author Agape Arimatea
  */
 public class GhostPatrol extends Ghost implements Runnable {
+	
+	private int direction=0;
 
-    private int direction = 0;
+    private int posX;
+    private int posY;
+    
+    public int getPosX() {
+		return posX;
+	}
 
-    public GhostPatrol() {
+	public void setPosX(int posX) {
+		this.posX = posX;
+	}
+
+	public int getPosY() {
+		return posY;
+	}
+
+	public void setPosY(int posY) {
+		this.posY = posY;
+	}
+
+	public GhostPatrol() {
 
     }
 
@@ -21,11 +45,17 @@ public class GhostPatrol extends Ghost implements Runnable {
     public void setDirection(int direction) {
         this.direction = direction;
     }
+    
+    private boolean isIntersectsPlayer() {
+    	Area ghostArea = new Area(this.getBounds());
+    	Area pacmanArea = new Area(Main.lblPacmanIcon.getBounds());
+    	return ghostArea.intersects(pacmanArea.getBounds2D());
+    }
 
     @Override
     public void run() {
-        int posX = this.getX();
-        int posY = this.getY();
+        posX = this.getX();
+        posY = this.getY();
 
         while (true) {
             switch (direction) {
@@ -43,6 +73,7 @@ public class GhostPatrol extends Ghost implements Runnable {
                     break;
 
             }
+            
             if (posX < 11) {
                 posX++;
             } else if (posX > 412) {
@@ -52,6 +83,12 @@ public class GhostPatrol extends Ghost implements Runnable {
             } else if (posY > 505) {
                 posY--;
             }
+            
+            if(isIntersectsPlayer() && this.isGhostRun()) {
+            	this.setPosX(178);
+            	this.setPosY(275);
+            }
+            
             this.setLocation(posX, posY);
             repaint();
 
@@ -64,5 +101,4 @@ public class GhostPatrol extends Ghost implements Runnable {
         }
 
     }
-
 }
