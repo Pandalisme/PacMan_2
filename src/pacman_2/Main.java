@@ -28,7 +28,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class Main extends JFrame implements KeyListener, ActionListener {
 
-    public static List<GhostPatrol> listGhost = new ArrayList<>();
+    public static List<Ghost> listGhost = new ArrayList<>();
     private Main main;
     private JPanel pnlMap;
     
@@ -48,13 +48,13 @@ public class Main extends JFrame implements KeyListener, ActionListener {
     public static Player lblPacmanIcon;
 
     // private JLabel lblPacmanIcon;
-    private GhostPatrol lblPinkyIcon;
+    private Ghost lblPinkyIcon;
     private GhostMovementHandler pinkyMH;
-    private GhostPatrol lblBlinkyIcon;
+    private Ghost lblBlinkyIcon;
     private GhostMovementHandler blinkyMH;
-    private GhostPatrol lblInkyIcon;
+    private Ghost lblInkyIcon;
     private GhostMovementHandler inkyMH;
-    private GhostPatrol lblClydeIcon;
+    private Ghost lblClydeIcon;
     private GhostMovementHandler clydeMH;
 
     //Blinking effect -- Press any key
@@ -269,25 +269,25 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         lblPacmanIcon.setDoubleBuffered(true);
         pnlMap.add(lblPacmanIcon);
 
-        lblPinkyIcon = new GhostPatrol();
+        lblPinkyIcon = new Ghost();
         lblPinkyIcon.setIcon(new ImageIcon(resizeImage("picture/pinky.png", 25, 25)));
         lblPinkyIcon.setBounds(202, 255, 25, 30);
         pnlMap.add(lblPinkyIcon);
         pinkyMH = new GhostMovementHandler(lblPinkyIcon);
 
-        lblBlinkyIcon = new GhostPatrol();
+        lblBlinkyIcon = new Ghost();
         lblBlinkyIcon.setIcon(new ImageIcon(resizeImage("picture/blinky.png", 25, 25)));
         lblBlinkyIcon.setBounds(178, 275, 25, 30);
         pnlMap.add(lblBlinkyIcon);
         blinkyMH = new GhostMovementHandler(lblBlinkyIcon);
 
-        lblInkyIcon = new GhostPatrol();
+        lblInkyIcon = new Ghost();
         lblInkyIcon.setIcon(new ImageIcon(resizeImage("picture/inky.png", 25, 25)));
         lblInkyIcon.setBounds(228, 275, 25, 30);
         pnlMap.add(lblInkyIcon);
         inkyMH = new GhostMovementHandler(lblInkyIcon);
 
-        lblClydeIcon = new GhostPatrol();
+        lblClydeIcon = new Ghost();
         lblClydeIcon.setIcon(new ImageIcon(resizeImage("picture/clyde.png", 25, 25)));
         lblClydeIcon.setBounds(247, 255, 25, 30);
         pnlMap.add(lblClydeIcon);

@@ -275,7 +275,7 @@ public class Player extends Character implements Runnable {
 
             for (int j = 0; j < listWall.size(); j++) {
                 if (intersectsWall(j)) {
-                    System.out.println("Nabrak");
+//                    System.out.println("Nabrak");
                     if (arah == 0) {
                         y++;
                     } else if (arah == 1) {

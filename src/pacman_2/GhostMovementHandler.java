@@ -1,47 +1,66 @@
 package pacman_2;
 
+import static pacman_2.Main.listWall;
+
 import java.util.Random;
 
-public class GhostMovementHandler extends GhostPatrol implements Runnable {
+public class GhostMovementHandler extends Ghost implements Runnable {
 
-	Random rnTime = new Random();
+//	Random rnTime = new Random();
 	Random rnDirection = new Random();
-	private GhostPatrol ghost;
+	private Ghost ghost;
+
 
 	
-
-	
-	public GhostMovementHandler(GhostPatrol ghost_name) {
+	public GhostMovementHandler(Ghost ghost_name) {
 		this.ghost = ghost_name;
 		Thread ghost_thread = new Thread(ghost_name);
 		ghost_thread.start();
 
 	
 	}
+	
 	@Override
 	public void run() {
-
+		int randomedDirection = rnDirection.nextInt(4);
 		
+		ghost.setDirection(randomedDirection);
 		
 		while (true) {
 
-//		    if (posX < 11) {
-//		        posX++;
-//		    } else if (posX > 412) {
-//		        posX--;
-//		    } else if (posY < 55) {
-//		        posY++;
-//		    } else if (posY > 505) {
-//		        posY--;
-//		    }
-		    
-		    
-			int time = rnTime.nextInt(2000)+500;
-			int direction = rnDirection.nextInt(4);
-			ghost.setDirection(direction);
+		 	for (int j = 0; j < listWall.size(); j++) {
+                if (ghost.isIntersectsWall(j) || ghost.isIntersectsOuterWall() ) {
+//                	System.out.println("Ghost collide");
+                	if(ghost.getDirection() == MOVE_UP) {
+                		ghost.setPosY(ghost.getPosY() + 2);
+                		while(randomedDirection == MOVE_UP) {
+                       		randomedDirection = rnDirection.nextInt(4);
+                		}
+                	}else if(ghost.getDirection() == MOVE_DOWN) {
+                		ghost.setPosY(ghost.getPosY() - 2);
+                		while(randomedDirection == MOVE_DOWN) {
+                       		randomedDirection = rnDirection.nextInt(4);
+                		}
+                	}else if(ghost.getDirection() == MOVE_LEFT) {
+                		ghost.setPosX(ghost.getPosX() + 2);
+                		while(randomedDirection == MOVE_LEFT) {
+                       		randomedDirection = rnDirection.nextInt(4);
+                		}
+                	}else if(ghost.getDirection() == MOVE_RIGHT) {
+                		ghost.setPosX(ghost.getPosX() - 2);
+                		while(randomedDirection == MOVE_RIGHT) {
+                       		randomedDirection = rnDirection.nextInt(4);
+                		}
+                	}	
+                	
+                }
+            }
+		 	ghost.setDirection(randomedDirection);
+
+		   
 			
 			try {
-				Thread.sleep(time);
+				Thread.sleep(10);
 			} catch (InterruptedException ex) {
 				System.out.println(System.err);
 			}
