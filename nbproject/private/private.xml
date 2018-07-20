@@ -3,31 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/Main.java</file>
-            <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/Ghost.java</file>
-            <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/GhostHoming.java</file>
-            <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/Player.java</file>
-            <file>file:/D:/Home/Michael/TUGAS2/IF/TUBES_OOP/PacMan_2/src/pacman_2/GhostPatrol.java</file>
-=======
-            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Player.java</file>
-            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/GhostHoming.java</file>
-            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Main.java</file>
->>>>>>> ccb41e5f005b3a2a18b18fe37b346c58083d2532
-=======
-            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Player.java</file>
-            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/GhostHoming.java</file>
-            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Main.java</file>
->>>>>>> 5c15d5fdb4d5fd8eb6170ab05e7d182847d6b961
-=======
             <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/GhostMovementHandler.java</file>
-            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/GhostPatrol.java</file>
-            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Coins.java</file>
             <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Main.java</file>
+            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/DataAkses.java</file>
             <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Player.java</file>
->>>>>>> 6bb224bf446314a097e1d28eb858922643f6dcae
+            <file>file:/D:/Latihan/SP%201/PBO/PacMan_2/src/pacman_2/Ghost.java</file>
         </group>
     </open-files>
 </project-private>

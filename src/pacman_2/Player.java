@@ -16,6 +16,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import static pacman_2.Main.coinsCounter;
 
 import static pacman_2.Main.lblPacmanIcon;
 import static pacman_2.Main.listGhost;
@@ -266,6 +267,7 @@ public class Player extends Character implements Runnable {
                 if (intersectsCoins(j)) {
                     if (listCoins.get(j).isShowing() == true) {
                         points += 100;
+                        coinsCounter--;
                         System.out.println("+Points : " + j);
                         listCoins.get(j).setVisible(false);
                         lblScore.setText(String.valueOf(points));

@@ -31,7 +31,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
     public static List<Ghost> listGhost = new ArrayList<>();
     private Main main;
     private JPanel pnlMap;
-    
+
     private JPanel gameOver;
     private JLabel lblGameOver;
 
@@ -67,6 +67,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
 
     // private coins
     private Coins coin;
+    public static int coinsCounter = 182;
     public static ArrayList<Coins> listCoins = new ArrayList<>();
 
     public static ArrayList<JLabel> listWall = new ArrayList<>();
@@ -220,11 +221,11 @@ public class Main extends JFrame implements KeyListener, ActionListener {
                         break;
                     }
                     case KeyEvent.VK_F5:
-                    	lblBlinkyIcon.setGhostRun(5);
-                    	lblInkyIcon.setGhostRun(5);
-                    	lblClydeIcon.setGhostRun(5);
-                    	
-                    	break;
+                        lblBlinkyIcon.setGhostRun(5);
+                        lblInkyIcon.setGhostRun(5);
+                        lblClydeIcon.setGhostRun(5);
+
+                        break;
                     default:
                         break;
                 }
@@ -307,13 +308,37 @@ public class Main extends JFrame implements KeyListener, ActionListener {
             @Override
             public void run() {
                 while (true) {
-                    if (lblPacmanIcon.getLife() <= 0) {
+                    if (lblPacmanIcon.getLife() <= 0 || coinsCounter == 0) {
                         lblPacmanIcon.gameOver();
+                        lblBlinkyIcon.gameOver();
+                        lblInkyIcon.gameOver();
+                        lblPinkyIcon.gameOver();
+                        lblClydeIcon.gameOver();
+
                         pnlMap.setFocusable(false);
+
                         gameOver = new JPanel();
                         gameOver.setSize(448, 567);
                         gameOver.setBackground(Color.black);
+                        gameOver.setFocusable(true);
+                        gameOver.addKeyListener(new KeyAdapter() {
+                            @Override
+                            public void keyPressed(KeyEvent e) {
+                                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                                    pacmanThread.interrupt();
+                                    inkyHandler.interrupt();
+                                    clydeHandler.interrupt();
+                                    pinkyHandler.interrupt();
+                                    blinkytHandler.interrupt();
+                                    System.exit(0);
+                                    
+                                    System.out.println("masuk!!");
+                                    
+                                }
+                            }
+                        });
                         add(gameOver);
+
                         gameOver.setLayout(null);
 
                         lblGameOver = new JLabel("GAMEOVER");
@@ -327,6 +352,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
                         lblInkyIcon.setVisible(false);
                         lblBlinkyIcon.setVisible(false);
                         lblPinkyIcon.setVisible(false);
+
                         DataAkses.addScore(lblPacmanIcon);
                         break;
 

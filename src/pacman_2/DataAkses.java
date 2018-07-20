@@ -8,6 +8,7 @@ package pacman_2;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static pacman_2.Main.coinsCounter;
 import static pacman_2.Main.lblHighScore;
 
 /**
@@ -21,7 +22,11 @@ public class DataAkses {
         try{
             PreparedStatement st = Connector.getConnection().prepareStatement(query);
             st.setString(1, "XXX");
-            st.setInt(2,pl.getPoints());
+            if(coinsCounter == 0){
+                st.setInt(2,pl.getPoints()+5000);
+            } else {
+                st.setInt(2,pl.getPoints());
+            }
             st.execute();
         }
         catch(SQLException e){
