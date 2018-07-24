@@ -31,7 +31,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
     public static List<Ghost> listGhost = new ArrayList<>();
     private Main main;
     private JPanel pnlMap;
-
+    
     private JPanel gameOver;
     private JLabel lblGameOver;
 
@@ -74,7 +74,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
 
     //Threads
     public static Thread pacmanThread;
-    public static Thread blinkytHandler;
+    public static Thread blinkyHandler;
     public static Thread inkyHandler;
     public static Thread pinkyHandler;
     public Thread clydeHandler;
@@ -221,11 +221,11 @@ public class Main extends JFrame implements KeyListener, ActionListener {
                         break;
                     }
                     case KeyEvent.VK_F5:
-                        lblBlinkyIcon.setGhostRun(5);
-                        lblInkyIcon.setGhostRun(5);
-                        lblClydeIcon.setGhostRun(5);
-
-                        break;
+                    	lblBlinkyIcon.setGhostRun(5);
+                    	lblInkyIcon.setGhostRun(5);
+                    	lblClydeIcon.setGhostRun(5);
+                    	
+                    	break;
                     default:
                         break;
                 }
@@ -300,45 +300,32 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         listGhost.add(lblPinkyIcon);
 
         pacmanThread = new Thread(lblPacmanIcon);
-        blinkytHandler = new Thread(blinkyMH);
+        blinkyHandler = new Thread(blinkyMH);
         inkyHandler = new Thread(inkyMH);
         clydeHandler = new Thread(clydeMH);
         pinkyHandler = new Thread(pinkyMH);
+        
         Thread mainThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
                     if (lblPacmanIcon.getLife() <= 0 || coinsCounter == 0) {
                         lblPacmanIcon.gameOver();
-                        lblBlinkyIcon.gameOver();
-                        lblInkyIcon.gameOver();
-                        lblPinkyIcon.gameOver();
-                        lblClydeIcon.gameOver();
-
                         pnlMap.setFocusable(false);
-
                         gameOver = new JPanel();
                         gameOver.setSize(448, 567);
                         gameOver.setBackground(Color.black);
                         gameOver.setFocusable(true);
-                        gameOver.addKeyListener(new KeyAdapter() {
+                        gameOver.addKeyListener(new KeyAdapter(){
                             @Override
-                            public void keyPressed(KeyEvent e) {
-                                if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-                                    pacmanThread.interrupt();
-                                    inkyHandler.interrupt();
-                                    clydeHandler.interrupt();
-                                    pinkyHandler.interrupt();
-                                    blinkytHandler.interrupt();
+                            public void keyPressed(KeyEvent e){
+                                if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
                                     System.exit(0);
-                                    
-                                    System.out.println("masuk!!");
-                                    
                                 }
                             }
                         });
                         add(gameOver);
-
+                        
                         gameOver.setLayout(null);
 
                         lblGameOver = new JLabel("GAMEOVER");
@@ -352,7 +339,6 @@ public class Main extends JFrame implements KeyListener, ActionListener {
                         lblInkyIcon.setVisible(false);
                         lblBlinkyIcon.setVisible(false);
                         lblPinkyIcon.setVisible(false);
-
                         DataAkses.addScore(lblPacmanIcon);
                         break;
 
@@ -368,7 +354,7 @@ public class Main extends JFrame implements KeyListener, ActionListener {
         mainThread.start();
 
 //        pacmanThread.start();
-        blinkytHandler.start();
+        blinkyHandler.start();
         inkyHandler.start();
         clydeHandler.start();
         pinkyHandler.start();

@@ -16,8 +16,9 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import static pacman_2.Main.coinsCounter;
 
+//Attributes from Main
+import static pacman_2.Main.coinsCounter;
 import static pacman_2.Main.lblPacmanIcon;
 import static pacman_2.Main.listGhost;
 import static pacman_2.Main.lblLifePoint;

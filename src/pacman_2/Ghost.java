@@ -21,7 +21,6 @@ public class Ghost extends Character implements Runnable{
 
     private int posX;
     private int posY;
-    protected boolean isGameOver;
     
     public Ghost() {
 
@@ -91,9 +90,6 @@ public class Ghost extends Character implements Runnable{
     	return ghostArea.intersects(pacmanArea.getBounds2D());
     }
 
-    public void gameOver() {
-        isGameOver = true;
-    }
     
     //Areas
     public boolean isIntersectsWall(int i) {
@@ -117,7 +113,7 @@ public class Ghost extends Character implements Runnable{
 		posX = this.getX();
         posY = this.getY();
         
-        while (!isGameOver) {
+        while (true) {
             if(isIntersectsOuterWall()){
                 posX = 205;
                 posY = 260;

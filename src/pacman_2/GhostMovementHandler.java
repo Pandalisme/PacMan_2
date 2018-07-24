@@ -16,18 +16,14 @@ public class GhostMovementHandler extends Ghost implements Runnable {
         ghost_thread.start();
 
     }
-    
-    public void gameOver() {
-        isGameOver = true;
-    }
-    
+
     @Override
     public void run() {
         int randomedDirection = rnDirection.nextInt(4);
 
         ghost.setDirection(randomedDirection);
 
-        while (!isGameOver) {
+        while (true) {
 
             for (int j = 0; j < listWall.size(); j++) {
                 if (ghost.isIntersectsWall(j) || ghost.isIntersectsOuterWall()) {
